@@ -9,8 +9,6 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
-    
-        void tabletMoved(TabletData &data);  // for receiving tablet events directly
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -24,14 +22,13 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    ofLight light; // creates a light and enables lighting
-    ofCamera cam;
+        void tabletMoved(TabletData &data);
+    // for receiving tablet events directly
     
-    ofMatrix4x4 tabmtx;
-    float gridsize;
-    
-    // for odPolylie function
+    ofNode baseNode;
+    ofNode childNode;
+    ofNode grandChildNode;
     ofPolyline line;
-    
+    ofCamera cam;
 		
 };
