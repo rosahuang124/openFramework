@@ -12,7 +12,7 @@ void ofApp::setup(){
     cam.lookAt(ofVec3f(0,0,0));
     
     tabmtx = ofMatrix4x4::newIdentityMatrix();
-    gridsize = 700;
+    gridsize = 1000;
     
     ofxTablet::start(); 
     
@@ -25,23 +25,29 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
+//    for (auto &vert : line.getVertices()){
+//        
+//        TabletData& data = ofxTablet::tabletData;
+////        vert.x += ofRandom(-1,1);
+//        vert.y += data.pressure;
+//    }
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
+    line.draw();
+    
     float gridsize = 700;
     
     cam.begin();
     
-
-
+    ofDrawGrid(gridsize/2.0, 8.0f, false, false, false, true);
     
     ofPushMatrix();
-    
     ofMultMatrix(tabmtx);
-    
-    ofDrawAxis(30);
+    ofDrawAxis(50);
     
     ofEnableLighting();
     light.enable();
@@ -58,15 +64,7 @@ void ofApp::draw(){
     
     ofDrawArrow(ofVec3f(0,0,100), ofVec3f(0,0,0), p);
     
-    
-    //use ofPolyline to draw line
-    line.draw();
-    
-    
-    
-    
     ofDisableLighting();
-    
     ofPopMatrix();
     
     cam.end();
@@ -84,6 +82,8 @@ void ofApp::keyPressed(int key){
 void ofApp::keyReleased(int key){
 
 }
+
+//--------------------------------------------------------------
 
 // get data as soon as it comes in
 void ofApp::tabletMoved(TabletData &data) {
@@ -110,7 +110,24 @@ void ofApp::mouseDragged(int x, int y, int button){
 
     ofPoint pt;
     pt.set(x,y);
-    line.addVertex(pt);
+    
+    TabletData& data = ofxTablet::tabletData;
+    float p= data.pressure*1000;
+    float angle = 0;
+    while (angle < TWO_PI) {
+        line.curveTo(x, y+ p * sin(angle / 20),0 );
+        angle ++;
+    };
+    
+    
+//    line.addVertex(pt);
+    
+//    float angle = 0;
+//    while (angle < TWO_PI ) {
+//        line.curveTo(100*cos(angle), 0, 100*sin(angle));
+//        line.curveTo(300*cos(angle), 300, 300*sin(angle));
+//        angle += TWO_PI / 30;
+//    }
     
 }
 
@@ -123,7 +140,7 @@ void ofApp::mousePressed(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
