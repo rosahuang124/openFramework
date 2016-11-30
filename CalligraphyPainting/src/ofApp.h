@@ -3,6 +3,14 @@
 #include "ofMain.h"
 #include "ofxTablet.h"
 
+
+class Line {
+public:
+    
+    ofPoint a;
+    ofPoint b;
+};
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -24,6 +32,10 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
+    vector < ofPoint > drawnPoints;
+    vector < Line > lines;
+
+    
     ofLight light; // creates a light and enables lighting
     ofCamera cam;
     
@@ -33,6 +45,6 @@ class ofApp : public ofBaseApp{
     // for odPolylie function
     ofPolyline line;
     
-		
+
 };
 
