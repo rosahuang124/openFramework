@@ -46,7 +46,7 @@ void ofApp::draw(){
     
     cam.begin();
     
-    ofDrawGrid(gridsize/2.0, 8.0f, false, false, false, true);
+//    ofDrawGrid(gridsize/2.0, 8.0f, false, false, false, true);
     
     ofPushMatrix();
     ofMultMatrix(tabmtx);
@@ -78,11 +78,19 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    
+    for (auto point : drawnPoints){
+        if (key == OF_KEY_RETURN){
+            lines.clear();
+        }
+    }
+
 
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+
 
 }
 
@@ -125,13 +133,17 @@ void ofApp::mouseDragged(int x, int y, int button){
         lineTemp.a = mStart;
         lineTemp.b = mouse;
         lines.push_back(lineTemp);
+        
         }
     
     drawnPoints.push_back(ofPoint(x,y));
     
-    ofPoint curve;
-    curve.set(x, y+p1);
-    line.addVertex(curve);
+
+//---draw wave line at the same time-----
+    
+//    ofPoint curvePt;
+//    curvePt.set(x, y+p1);
+//    curve.addVertex(curvePt);
 
 }
 
@@ -157,22 +169,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 //        angle ++;
 //    };
     
-    
-//    line.addVertex(pt);
-    
-//    float angle = 0;
-//    while (angle < TWO_PI ) {
-//        line.curveTo(100*cos(angle), 0, 100*sin(angle));
-//        line.curveTo(300*cos(angle), 300, 300*sin(angle));
-//        angle += TWO_PI / 30;
-//    }
-    
+
 //}
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
     
-    line.clear();
 
 }
 
