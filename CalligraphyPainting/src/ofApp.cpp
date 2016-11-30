@@ -37,7 +37,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-//    line.draw();
+    curve.draw();
+    
     for (auto line : lines) {
         ofDrawLine(line.a, line.b);
     }
@@ -72,7 +73,7 @@ void ofApp::draw(){
     
     cam.end();
 
-    
+
     
 }
 
@@ -82,6 +83,7 @@ void ofApp::keyPressed(int key){
     for (auto point : drawnPoints){
         if (key == OF_KEY_RETURN){
             lines.clear();
+            curve.clear();
         }
     }
 
@@ -120,7 +122,7 @@ void ofApp::mouseMoved(int x, int y ){
 void ofApp::mouseDragged(int x, int y, int button){
     
     TabletData& data = ofxTablet::tabletData;
-        float p1= data.pressure*200;
+        float p1= data.pressure*300;
     
     for (auto point : drawnPoints){
         
@@ -134,16 +136,22 @@ void ofApp::mouseDragged(int x, int y, int button){
         lineTemp.b = mouse;
         lines.push_back(lineTemp);
         
+        ofPoint curvePt;
+        curvePt.set(x, y+p1);
+        
+        Line curveTemp;
+        curveTemp.curvePt = curvePt;
+        curve.addVertex(curvePt);
+        lines.push_back(curveTemp);
+        
         }
     
     drawnPoints.push_back(ofPoint(x,y));
     
-
-//---draw wave line at the same time-----
+ 
+//---draw wave line at the same time--doesn't work!!---
     
-//    ofPoint curvePt;
-//    curvePt.set(x, y+p1);
-//    curve.addVertex(curvePt);
+   
 
 }
 

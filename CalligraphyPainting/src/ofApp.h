@@ -9,6 +9,7 @@ public:
     
     ofPoint a;
     ofPoint b;
+    ofPoint curvePt;
 };
 
 class ofApp : public ofBaseApp{
@@ -35,6 +36,7 @@ class ofApp : public ofBaseApp{
     
     vector < ofPoint > drawnPoints;
     vector < Line > lines;
+   
     
     ofLight light; // creates a light and enables lighting
     ofCamera cam;
