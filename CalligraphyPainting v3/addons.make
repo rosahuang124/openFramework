@@ -1,0 +1,3 @@
+ofxAssimpModelLoader
+ofxGui
+ofxTablet-master
