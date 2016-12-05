@@ -10,6 +10,7 @@ public:
     ofPoint a;
     ofPoint b;
     ofPoint curvePt;
+
 };
 
 class ofApp : public ofBaseApp{
@@ -36,6 +37,7 @@ class ofApp : public ofBaseApp{
     
     vector < ofPoint > drawnPoints;
     vector < Line > lines;
+    vector< ofPolyline > curvelines;
    
     
     ofLight light; // creates a light and enables lighting
@@ -46,7 +48,7 @@ class ofApp : public ofBaseApp{
     
     // for odPolylie function
     ofPolyline line;
-    ofPolyline curve;
+    ofPolyline curveline;
     
    
 

@@ -37,10 +37,13 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    curve.draw();
-    
     for (auto line : lines) {
         ofDrawLine(line.a, line.b);
+    }
+    
+    for (int i = 0; i < curvelines.size(); i++)
+    {
+        curvelines[i].draw();
     }
     
     float gridsize = 700;
@@ -83,7 +86,7 @@ void ofApp::keyPressed(int key){
     for (auto point : drawnPoints){
         if (key == OF_KEY_RETURN){
             lines.clear();
-            curve.clear();
+            curveline.clear();
         }
     }
 
@@ -126,6 +129,7 @@ void ofApp::mouseDragged(int x, int y, int button){
     
     for (auto point : drawnPoints){
         
+        //----draw verticle line----//
         ofPoint mouse;
         ofPoint mStart;
         mouse.set(x,y+p1);
@@ -135,24 +139,21 @@ void ofApp::mouseDragged(int x, int y, int button){
         lineTemp.a = mStart;
         lineTemp.b = mouse;
         lines.push_back(lineTemp);
-        
-        ofPoint curvePt;
-        curvePt.set(x, y+p1);
-        
-        Line curveTemp;
-        curveTemp.curvePt = curvePt;
-        curve.addVertex(curvePt);
-        lines.push_back(curveTemp);
-        
-        }
+       }
     
     drawnPoints.push_back(ofPoint(x,y));
     
- 
-//---draw wave line at the same time--doesn't work!!---
-    
-   
 
+        //----draw curve line----//
+//        ofPoint curvePtTemp;
+//        curvePtTemp.set(x, y+p1);
+//        
+//        Line curveTemp;
+//        curveTemp.curvePt = curvePtTemp;
+//        curve.addVertex(curvePtTemp);
+//        curves.push_back(curveTemp);
+//   
+    curvelines[curvelines.size() - 1].addVertex(ofPoint(x, y+p1));
 }
 
 
@@ -183,11 +184,17 @@ void ofApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
     
-
+    curvelines.push_back(curveline);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
+
+
+        
+    
+        
+    
     
 }
 
