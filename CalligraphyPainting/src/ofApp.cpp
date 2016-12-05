@@ -24,13 +24,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
-//    for (auto &vert : line.getVertices()){
-//        
-//        TabletData& data = ofxTablet::tabletData;
-////        vert.x += ofRandom(-1,1);
-//        vert.y += data.pressure;
-//    }
+
     
 }
 
@@ -86,7 +80,7 @@ void ofApp::keyPressed(int key){
     for (auto point : drawnPoints){
         if (key == OF_KEY_RETURN){
             lines.clear();
-            curveline.clear();
+            curvelines.clear();
         }
     }
 
@@ -142,33 +136,13 @@ void ofApp::mouseDragged(int x, int y, int button){
        }
     
     drawnPoints.push_back(ofPoint(x,y));
-    
 
-        //----draw curve line----//
-//        ofPoint curvePtTemp;
-//        curvePtTemp.set(x, y+p1);
-//        
-//        Line curveTemp;
-//        curveTemp.curvePt = curvePtTemp;
-//        curve.addVertex(curvePtTemp);
-//        curves.push_back(curveTemp);
-//   
+    //----draw curve line----//
     curvelines[curvelines.size() - 1].addVertex(ofPoint(x, y+p1));
 }
 
 
 
-
-//--------draw wave line----------
-    
-//    ofPoint pt;
-//    TabletData& data = ofxTablet::tabletData;
-//    float p1= data.pressure*100;
-//
-//    pt.set(x,y+p1);
-//    
-//    line.addVertex(pt);
-    
 //------draw wave--------------
     
 //    float p2= data.pressure*1000;
@@ -177,9 +151,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 //        line.curveTo(x, y+ p2 * sin(angle / 20),0 );
 //        angle ++;
 //    };
-    
 
-//}
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
@@ -190,11 +162,6 @@ void ofApp::mousePressed(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
 
-
-        
-    
-        
-    
     
 }
 
